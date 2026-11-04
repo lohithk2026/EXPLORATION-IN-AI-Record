@@ -1,49 +1,57 @@
-student={}
+# Menu-Driven Student Information System
+
+students = {}
+
 def add_student():
-    roll=input("Enter Roll No:" )
-    name=input("Enter the name")
-    dept=input("Enter the Departmant ")
-    student[roll]={"Name":name,"Department":dept}
+    roll = input("Enter Roll No: ")
+    name = input("Enter Name: ")
+    dept = input("Enter Department: ")
+    students[roll] = {"Name": name, "Department": dept}
+    print("Student added successfully.")
+
 def view_students():
-    if not student:
-        print("No Stuent record found")
-        print("\n--Student Records--")
-    for roll,data in student.items():
-        print("Roll No:",roll,"Name:",data["Name"],"|Department :",data["Department"])
+    if not students:
+        print("No student records found.")
+        return
+
+    print("\n--- Student Records ---")
+    for roll, data in students.items():
+        print("Roll No:", roll, "| Name:", data["Name"], "| Department:", data["Department"])
+
 def search_student():
-    roll=input("Enter the Roll no:")
-
-    if roll in student:
-        print(student[roll])
+    roll = input("Enter Roll No to search: ")
+    if roll in students:
+        print(students[roll])
     else:
-        print("Student not found")
+        print("Student not found.")
+
 def delete_student():
-    roll=int(input("Enter the roll "))
-
-    if roll in student:
-        del student[roll]
-        print("Student data not found")
+    roll = input("Enter Roll No to delete: ")
+    if roll in students:
+        del students[roll]
+        print("Student deleted successfully.")
     else:
-        print("Student data not found")
+        print("Student not found.")
+
 while True:
-    print("\n 1 Add Studnet ")
-    print(" 2.View Studnet")
-    print("3. Search Student ")
-    print("4. Delete Student ")
-    print("5.Exit")
+    print("\n1. Add Student")
+    print("2. View Students")
+    print("3. Search Student")
+    print("4. Delete Student")
+    print("5. Exit")
 
-    choise=input("Enter your Choise")
+    choice = input("Enter your choice: ")
 
-    if choise=="1":
-        add_student
-    elif choise=="2":
-        view_students
-    elif choise=="3":
-        search_student
-    elif choise=="4":
-        delete_student
-    elif choise=="5":
-        print("Exiting")
+    if choice == "1":
+        add_student()
+    elif choice == "2":
+        view_students()
+    elif choice == "3":
+        search_student()
+    elif choice == "4":
+        delete_student()
+    elif choice == "5":
+        print("Exiting...")
         break
     else:
-        print("Invalid choise")
+        print("Invalid choice.")
